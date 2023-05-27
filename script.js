@@ -9,8 +9,11 @@ let cantidadTarjetas = 12;
 let mostrarMovimientos = document.getElementById("movimientos");
 let mostrarTiempo = document.getElementById("tiempo");
 let backgroundBody = document.querySelector("body");
-
+mostrarTiempo.style.display = "none";
+mostrarMovimientos.style.display = "none";
 function generarTablero() {
+  mostrarTiempo.style.display = "block";
+  mostrarMovimientos.style.display = "block";
   let iconos = [
     '<img class="img-caratrasera" src="img/batman.png" alt="Imagen de Batman"/>',
     '<img class="img-caratrasera" src="img/superman.png" alt="Imagen de Superman"/>',
@@ -95,5 +98,21 @@ function deseleccionar(selecciones) {
       trasera2.style.background = "#3a89c9";
       aciertos++;
     }
+    if (fin()) {
+      swal.fire({
+        title: `El juego ha finalizado`,
+        text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
+          timer + 1
+        } segundos`,
+        icon: `success`,
+      });
+    }
   }, 800);
+}
+
+function fin() {
+  if (aciertos != cantidadTarjetas / 2) {
+    return false;
+  }
+  return true;
 }

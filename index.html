@@ -17,17 +17,18 @@
       rel="stylesheet"
     />
     <title>Memorama DC Comics</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
   </head>
   <body>
+    <div class="container-score">
+      <h2 class="score" id="movimientos">Movimientos: 0</h2>
+      <h2 class="score" id="tiempo">Tiempo: 0 segundos</h2>
+    </div>
     <div id="tablero"></div>
 
     <br />
 
     <div class="nuevo-juego" onclick="generarTablero()">Nuevo Juego</div>
-    <div class="container-score">
-      <h2 class="score" id="movimientos">Movimientos: 0</h2>
-      <h2 class="score" id="tiempo">Tiempo: 0 segundos</h2>
-    </div>
 
     <script src="script.js"></script>
   </body>
