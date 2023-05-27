@@ -1,8 +1,8 @@
 :root {
   --w: calc(70vw / 6);
   --h: calc(70vh / 2);
-  --wPhone: calc(60vw / 6);
-  --hPhone: calc(60vh / 2);
+  --wPhone: calc(55vw / 6);
+  --hPhone: calc(55vh / 2);
 }
 
 * {
@@ -134,7 +134,7 @@ div {
     background-image: url(img/backgroundPhone.jpg);
   }
   #tablero {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .container-score {
     gap: 0px;
@@ -145,5 +145,11 @@ div {
   .cara {
     width: var(--wPhone);
     height: var(--hPhone);
+  }
+}
+
+@media (max-width: 319px) {
+  #tablero {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
