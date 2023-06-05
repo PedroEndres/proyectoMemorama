@@ -140,7 +140,7 @@ function deseleccionar(selecciones) {
             timer + 1
           } segundos`,
         });
-      } else if (timer < 30) {
+      } else if (timer < 45) {
         Swal.fire({
           title: "Sweet!",
           text: "Modal with a custom image.",
