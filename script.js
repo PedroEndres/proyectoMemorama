@@ -130,39 +130,26 @@ function deseleccionar(selecciones) {
     if (fin()) {
       if (timer < 15) {
         Swal.fire({
-          title: "Sweet!",
-          text: "Modal with a custom image.",
           imageUrl: "img/christianBaleAgree.gif",
           imageWidth: 400,
           imageHeight: 350,
-          title: `El juego ha finalizado`,
-          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
-            timer + 1
-          } segundos`,
+          title: `¡¡Felicitaciones!!`,
+          text: `Movimientos: ${movimientos}, Tiempo: ${timer + 1} segundos`,
         });
       } else if (timer < 45) {
         Swal.fire({
-          title: "Sweet!",
-          text: "Modal with a custom image.",
           imageUrl: "img/christianBaleApproves.jpg",
           imageWidth: 350,
           imageHeight: 350,
-          title: `El juego ha finalizado`,
-          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
-            timer + 1
-          } segundos`,
+          title: `¡Felicitaciones!`,
+          text: `Movimientos: ${movimientos}, Tiempo: ${timer + 1} segundos`,
         });
       } else {
         Swal.fire({
-          title: "Sweet!",
-          text: "Modal with a custom image.",
           imageUrl: "img/jokerAplauso.gif",
           imageWidth: 400,
           imageHeight: 350,
-          title: `El juego ha finalizado`,
-          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
-            timer + 1
-          } segundos`,
+          text: `Movimientos: ${movimientos}, Tiempo: ${timer + 1} segundos`,
         });
       }
     }
