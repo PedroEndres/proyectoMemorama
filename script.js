@@ -4,16 +4,19 @@ let temporizador = false;
 let timer = 0;
 let aciertos = 0;
 let tiempoSucesivoId = null;
-let cantidadTarjetas = 12;
+let cantidadTarjetas = 0;
 
 let mostrarMovimientos = document.getElementById("movimientos");
 let mostrarTiempo = document.getElementById("tiempo");
 let backgroundBody = document.querySelector("body");
+let newGame = document.querySelector(".nuevo-juego");
+let tablero = document.getElementById("tablero");
+
 mostrarTiempo.style.display = "none";
 mostrarMovimientos.style.display = "none";
-function generarTablero() {
-  mostrarTiempo.style.display = "block";
-  mostrarMovimientos.style.display = "block";
+newGame.style.display = "none";
+
+function generarTablero(x) {
   let iconos = [
     '<img class="img-caratrasera" src="img/batman.png" alt="Imagen de Batman"/>',
     '<img class="img-caratrasera" src="img/superman.png" alt="Imagen de Superman"/>',
@@ -21,19 +24,41 @@ function generarTablero() {
     '<img class="img-caratrasera" src="img/joker.png" alt="Imagen de Guasón/Joker"/>',
     '<img class="img-caratrasera" src="img/flash.png" alt="Imagen de Flash"/>',
     '<img class="img-caratrasera" src="img/deathStroke.png" alt="Imagen de Deathstroke"/>',
+    '<img class="img-caratrasera" src="img/acertijo.png" alt="Imagen de Acertijo"/>',
+    '<img class="img-caratrasera" src="img/aquaman.png" alt="Imagen de Aquaman"/>',
+    '<img class="img-caratrasera" src="img/catWoman.png" alt="Imagen de Gatubela"/>',
+    '<img class="img-caratrasera" src="img/cyborg.png" alt="Imagen de Cyborg"/>',
+    '<img class="img-caratrasera" src="img/greenLantern.png" alt="Imagen de Linterna verde"/>',
+    '<img class="img-caratrasera" src="img/penguin.png" alt="Imagen del Pinguino"/>',
   ];
-  backgroundBody.style.backdropFilter = "brightness(0.3)";
-  backgroundBody.style.transition = "2s";
   selecciones = [];
   movimientos = 0;
-  mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
   aciertos = 0;
-  temporizador = false;
   timer = 0;
-  mostrarTiempo.innerHTML = `Tiempo: ${timer} segundos`;
-  let tablero = document.getElementById("tablero");
+  cantidadTarjetas = x;
+  temporizador = false;
   let tarjetas = [];
-  for (let i = 0; i < cantidadTarjetas; i++) {
+
+  mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
+  mostrarTiempo.innerHTML = `Tiempo: ${timer} segundos`;
+
+  newGame.style.display = "flex";
+  mostrarTiempo.style.display = "flex";
+  mostrarMovimientos.style.display = "flex";
+  backgroundBody.style.backdropFilter = "brightness(0.3)";
+  backgroundBody.style.transition = "2s";
+
+  detenerTiempo();
+
+  if (x === 6) {
+    newGame.setAttribute("onclick", "generarTablero(6)");
+  } else if (x === 12) {
+    newGame.setAttribute("onclick", "generarTablero(12)");
+  } else if (x === 24) {
+    newGame.setAttribute("onclick", "generarTablero(24)");
+  }
+
+  for (let i = 0; i < x; i++) {
     tarjetas.push(`
     <div class="area-tarjeta" onclick="seleccionarTarjeta(${i})">
     <div class="tarjeta" id="tarjeta${i}">
@@ -43,7 +68,7 @@ function generarTablero() {
       <div class="cara superior"></div>
       <img
         class="img-carasuperior"
-        src="img/backCardDCComics.png"
+        src="img/fondoCartaSuperior.png"
         alt="Imagen del logo de la carta"
       />
     </div>
@@ -66,6 +91,10 @@ function contarTiempo() {
   }, 1000);
 }
 
+function detenerTiempo() {
+  clearInterval(tiempoSucesivoId);
+}
+
 function seleccionarTarjeta(i) {
   let tarjeta = document.getElementById("tarjeta" + i);
   if (tarjeta.style.transform != "rotateY(180deg)") {
@@ -79,7 +108,7 @@ function seleccionarTarjeta(i) {
     mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}`;
   }
   if (temporizador == false) {
-    contarTiempo(selecciones);
+    contarTiempo();
     temporizador = true;
   }
 }
@@ -94,18 +123,48 @@ function deseleccionar(selecciones) {
       tarjeta1.style.transform = "rotateY(0deg)";
       tarjeta2.style.transform = "rotateY(0deg)";
     } else {
-      trasera1.style.background = "#3a89c9";
-      trasera2.style.background = "#3a89c9";
+      trasera1.style.background = "#11baac";
+      trasera2.style.background = "#11baac";
       aciertos++;
     }
     if (fin()) {
-      swal.fire({
-        title: `El juego ha finalizado`,
-        text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
-          timer + 1
-        } segundos`,
-        icon: `success`,
-      });
+      if (timer < 15) {
+        Swal.fire({
+          title: "Sweet!",
+          text: "Modal with a custom image.",
+          imageUrl: "img/christianBaleAgree.gif",
+          imageWidth: 400,
+          imageHeight: 350,
+          title: `El juego ha finalizado`,
+          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
+            timer + 1
+          } segundos`,
+        });
+      } else if (timer < 30) {
+        Swal.fire({
+          title: "Sweet!",
+          text: "Modal with a custom image.",
+          imageUrl: "img/christianBaleApproves.jpg",
+          imageWidth: 350,
+          imageHeight: 350,
+          title: `El juego ha finalizado`,
+          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
+            timer + 1
+          } segundos`,
+        });
+      } else {
+        Swal.fire({
+          title: "Sweet!",
+          text: "Modal with a custom image.",
+          imageUrl: "img/jokerAplauso.gif",
+          imageWidth: 400,
+          imageHeight: 350,
+          title: `El juego ha finalizado`,
+          text: `Felicitaciones! Movimientos: ${movimientos}, Tiempo: ${
+            timer + 1
+          } segundos`,
+        });
+      }
     }
   }, 800);
 }

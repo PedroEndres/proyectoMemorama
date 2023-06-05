@@ -7,14 +7,8 @@
     <link rel="stylesheet" href="style.css" />
     <link
       rel="shortcut icon"
-      href="img/backCardDCComics.png"
+      href="img/fondoCartaSuperior.png"
       type="image/x-icon"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-      rel="stylesheet"
     />
     <title>Memorama DC Comics</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
@@ -25,10 +19,19 @@
       <h2 class="score" id="tiempo">Tiempo: 0 segundos</h2>
     </div>
     <div id="tablero"></div>
-
     <br />
+    <div class="nuevo-juego" onclick="generarTablero(6)">Nuevo juego</div>
+    <div class="list-dificult">
+      <div>
+        <span class="score">Seleccionar dificultad:</span>
+      </div>
 
-    <div class="nuevo-juego" onclick="generarTablero()">Nuevo Juego</div>
+      <ul class="list">
+        <li class="score btn-easy" onclick="generarTablero(6)">Fácil</li>
+        <li class="score btn-normal" onclick="generarTablero(12)">Normal</li>
+        <li class="score btn-dificil" onclick="generarTablero(24)">Difícil</li>
+      </ul>
+    </div>
 
     <script src="script.js"></script>
   </body>
